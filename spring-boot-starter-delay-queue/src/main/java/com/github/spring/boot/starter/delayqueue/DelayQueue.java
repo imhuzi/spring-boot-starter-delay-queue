@@ -14,7 +14,6 @@ package com.github.spring.boot.starter.delayqueue;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -55,7 +54,7 @@ public class DelayQueue {
     private int delay = 30;
 
     /**
-     * 默认100条
+     * 默认50条
      */
     private int batchSize = 50;
 
@@ -139,7 +138,7 @@ public class DelayQueue {
      * @param messageContent 消息内容
      */
     public void push(Object messageContent) {
-        String seqId = RandomStringUtils;
+        String seqId = UUID.randomUUID().toString().replace("-", "");
         push(delay, seqId, messageContent);
     }
 
